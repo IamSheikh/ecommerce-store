@@ -9,6 +9,12 @@ const handler = async (req, res) => {
     deliveryAddress: req.body.deliveryAddress,
     city: req.body.city,
     mobileNumber: req.body.mobileNumber,
+    productName: req.body.productName,
+    productImg: req.body.productImg,
+    productQuantity: req.body.productQuantity,
+    productNameToPrint: req.body.productNameToPrint,
+    size: req.body.size,
+    price: req.body.price
   });
 
   await newOrder.save();

@@ -2,21 +2,40 @@ import Page from '../layouts/page.jsx';
 import { Heading, Flex, Box, Input, Text, Button } from '@chakra-ui/react';
 import { useRouter } from 'next/router';
 import axios from 'axios';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 const Checkout = () => {
   const [name, setName] = useState('');
   const [mobileNumber, setMobileNumber] = useState(0);
   const [deliveryAddress, setDeliveryAddress] = useState('');
   const [city, setCity] = useState('');
+  const [currentCart, setCurrentCart] = useState({})
   const router = useRouter();
 
+  useEffect(() => {
+    console.table({currentCart})
+  }, [currentCart])
+  
+  useEffect(() => {
+    if (localStorage !== undefined) {
+      let cc = localStorage.getItem('currentCart')
+      setCurrentCart(JSON.parse(cc))
+    }
+  }, [])
+
   const confirmOrder = () => {
+    const { quantity, productName, productImgs, price, sizes, nameToPrint } = currentCart
     const fields = {
       name,
       mobileNumber,
       deliveryAddress,
       city,
+      productQuantity: quantity,
+      productName,
+      productImg: productImgs,
+      productNameToPrint: nameToPrint,
+      size: sizes,   
+      price
     };
     axios
       .post('/api/order/new-order', fields)

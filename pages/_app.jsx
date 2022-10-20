@@ -4,6 +4,7 @@ import SocialLinksHeader from '../components/social-links-header';
 import { useState, useEffect } from 'react';
 import Header from '../components/header';
 import { AuthProvider } from '../hooks/use-auth';
+import Footer from '../components/footer';
 
 function MySite({ Component, pageProps }) {
   const [showChild, setShowChild] = useState(false);
@@ -24,6 +25,7 @@ function MySite({ Component, pageProps }) {
           <SocialLinksHeader />
           <Header />
           <Component {...pageProps} />
+          <Footer />
         </AuthProvider>
       </ChakraProvider>
     );
