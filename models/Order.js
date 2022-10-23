@@ -40,6 +40,10 @@ const OrderSchema = new mongoose.Schema({
   price: {
     type: String,
     required: true
+  },
+  isDelivered: {
+    type: Boolean,
+    required: true,
   }
 });
 

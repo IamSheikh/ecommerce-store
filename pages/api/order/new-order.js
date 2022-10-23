@@ -14,7 +14,8 @@ const handler = async (req, res) => {
     productQuantity: req.body.productQuantity,
     productNameToPrint: req.body.productNameToPrint,
     size: req.body.size,
-    price: req.body.price
+    price: req.body.price,
+    isDelivered: false,
   });
 
   await newOrder.save();
